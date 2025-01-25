@@ -1,0 +1,31 @@
+@model IEnumerable<EventManager.Models.Evento>
+
+<h1>Lista de Eventos</h1>
+<a href="@Url.Action("CrearEvento", "Evento")" class="btn btn-primary">Crear Evento</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Lugar</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evento in Model)
+        {
+            <tr>
+                <td>@evento.Titulo</td>
+                <td>@evento.Descripcion</td>
+                <td>@evento.Lugar</td>
+                <td>@evento.Fecha.ToShortDateString()</td>
+                <td>
+                    <a href="@Url.Action("EditarEvento", "Evento", new { id = evento.ID })" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="@Url.Action("EliminarEvento", "Evento", new { id = evento.ID })" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
